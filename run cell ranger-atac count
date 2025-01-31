@@ -1,0 +1,18 @@
+#You can create a reference with cellranger-arc
+#cellranger-atac doesnt have a reference building function
+#you can use the reference builded via cellranger-arc for both analysis
+#arc requires "eşlenik" ATAC and count data ( make this sentence better!)
+
+
+#https://support.10xgenomics.com/single-cell-atac/software/pipelines/latest/using/count
+#!/bin/bash
+
+export PATH=/opt/cellranger-atac-2.1.0:$PATH
+
+cellranger-atac count --id=C1 \
+                        --reference=/home/biolab/ek_atac_analysis/TAIR10/ \
+                        --fastqs=/mnt/lun2/rawdata/CeyhunKayihan/ArabidopsisThaliana-Drought-ATACseq-Corrected/raw_data/ \
+                        --sample=C1 \
+                        --localcores=40 \
+                        --localmem=800 \
+
