@@ -21,6 +21,23 @@ awk '{
 
 
 
+#Then have a config file:
+
+{
+    organism: "arabidopsis_thaliana"
+    genome: ["TAIR10"]
+    input_fasta: ["/mnt/lun3/processed/CeyhunKayihan/ArabidopsisThaliana-Drought-scRNAseq/ara_thaliana_reference/fasta/genome.fa"]
+    input_gtf: ["/mnt/lun3/processed/CeyhunKayihan/ArabidopsisThaliana-Drought-scRNAseq/ara_thaliana_reference/genes/genes.gtf.gz"]
+    non_nuclear_contigs: ["Mt","Pt"]
+    input_motifs: "/mnt/lun2/rawdata/CeyhunKayihan/ArabidopsisThaliana-Drought-ATACseq/JASPAR2020_CORE_plants_non-redundant_pfms_jaspar_modified_ek.txt"
+}
+
+#Then export the PATH and run the reference building:
+
+export PATH=/opt/cellranger-arc-2.0.2:$PATH
+
+cellranger-arc mkref --config=at.config
+
 
 
 
