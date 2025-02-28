@@ -16,3 +16,29 @@ cellranger-atac count --id=C1 \
                         --localcores=40 \
                         --localmem=800 \
 
+
+
+
+#multiple Samples:
+
+#!/bin/bash
+
+export PATH=/opt/cellranger-atac-2.1.0:$PATH
+
+
+INPUT_DIR="/mnt/lun2/rawdata/CeyhunKayihan/ArabidopsisThaliana-Drought-ATACseq-v3-corrected"
+REFERENCE="/path/to/refdata-cellranger-arc-GRCh38-2020-A"
+
+# List of sample names
+SAMPLES=("RP24-149-C2" "RP24-149-D1" "RP24-149-C1")
+
+
+for SAMPLE in "${SAMPLES[@]}"; do
+    cellranger-atac count --id="$SAMPLE" \
+                          --fastqs="$INPUT_DIR" \
+                          --sample="$SAMPLE" \
+                          --reference=/home/biolab/ek_atac_analysis/TAIR10/ \
+                          --localcores=40 \
+                          --localmem=800
+done
+
